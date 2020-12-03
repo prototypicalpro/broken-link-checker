@@ -273,7 +273,7 @@ describe("INTERNAL -- Link", () =>
 					// No filtering has been performed
 					wasExcluded: null,
 					excludedReason: null
-				});
+				}, `Combination ${typeof args[0]} + ${typeof args[1]} failed to match expectations`);
 			});
 		});
 
@@ -391,6 +391,66 @@ describe("INTERNAL -- Link", () =>
 			const baseURL = "smtp://domain.com/";
 			const linkURL = "path/resource.html?query#hash";
 			const link = new Link().resolve(linkURL, baseURL);
+
+			expect(simplifyLink(link)).to.deep.include(
+			{
+				originalURL:                          linkURL,
+				resolvedURL:     new URL(`${baseURL}${linkURL}`),
+				rebasedURL:      new URL(`${baseURL}${linkURL}`),
+				resolvedBaseURL: new URL(baseURL),
+				rebasedBaseURL:  new URL(baseURL),
+				isInternal: true,
+				isSamePage: false
+			});
+		});
+
+
+
+		it("does not accept an incomplete URL with autoprefixing off", () =>
+		{
+			const baseURL = null;
+			const linkURL = "example.com/my/path";
+			const link = new Link().resolve(linkURL, baseURL);
+
+			expect(simplifyLink(link)).to.deep.include(
+			{
+				originalURL:                          linkURL,
+				resolvedURL:     null,
+				rebasedURL:      null,
+				resolvedBaseURL: null,
+				rebasedBaseURL:  null,
+				isInternal: null,
+				isSamePage: null
+			});
+		});
+
+
+
+		it("does accept an incomplete URL with autoprefixing on", () =>
+		{
+			const baseURL = null;
+			const linkURL = "example.com/my/path";
+			const link = new Link().resolve(linkURL, baseURL, 'https://');
+
+			expect(simplifyLink(link)).to.deep.include(
+				{
+					originalURL:                          linkURL,
+					resolvedURL:     new URL(`https://${linkURL}`),
+					rebasedURL:      new URL(`https://${linkURL}`),
+					resolvedBaseURL: null,
+					rebasedBaseURL:  null,
+					isInternal: null,
+					isSamePage: null
+				});
+		});
+
+
+
+		it("still correctly applies a base URL with autoprefixing on", () =>
+		{
+			const baseURL = "smtp://domain.com/";
+			const linkURL = "path/resource.html?query#hash";
+			const link = new Link().resolve(linkURL, baseURL, true);
 
 			expect(simplifyLink(link)).to.deep.include(
 			{
