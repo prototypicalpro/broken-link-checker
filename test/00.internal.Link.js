@@ -430,7 +430,7 @@ describe("INTERNAL -- Link", () =>
 		{
 			const baseURL = null;
 			const linkURL = "example.com/my/path";
-			const link = new Link().resolve(linkURL, baseURL, 'https://');
+			const link = new Link().resolve(linkURL, baseURL, [{ pattern: /example\.com/i, prefix: "https://"}]);
 
 			expect(simplifyLink(link)).to.deep.include(
 				{
@@ -450,7 +450,7 @@ describe("INTERNAL -- Link", () =>
 		{
 			const baseURL = "smtp://domain.com/";
 			const linkURL = "path/resource.html?query#hash";
-			const link = new Link().resolve(linkURL, baseURL, true);
+			const link = new Link().resolve(linkURL, baseURL, [{ pattern: /example\.com/i, prefix: "https://"}]);
 
 			expect(simplifyLink(link)).to.deep.include(
 			{
