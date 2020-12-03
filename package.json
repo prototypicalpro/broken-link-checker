@@ -81,6 +81,7 @@
     "node": ">= 12"
   },
   "scripts": {
+    "prepare": "npm run build",
     "build": "babel lib/ --config-file=./scripts/babel.config.js --out-dir=lib-cjs/ --source-maps",
     "ci": "npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint lib/ scripts/ test/",
