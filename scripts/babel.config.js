@@ -20,10 +20,9 @@ module.exports =
 	[
 		["@babel/preset-env",
 		{
-			targets:
-			{
-				browsers: `node ${nodeVersion}`
-			}
+			corejs: 3,
+			targets: `node ${nodeVersion}`,
+			useBuiltIns: "usage"
 		}]
 	]
 };
