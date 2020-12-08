@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../lib/internal/methods.js"],"names":["GET_METHOD","HEAD_METHOD"],"mappings":";;;;;;AAAO,MAAMA,UAAU,GAAG,KAAnB;;AACA,MAAMC,WAAW,GAAG,MAApB","sourcesContent":["export const GET_METHOD = \"get\";\nexport const HEAD_METHOD = \"head\";\n"],"file":"methods.js"}
