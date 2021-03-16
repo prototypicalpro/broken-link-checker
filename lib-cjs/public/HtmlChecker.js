@@ -1,11 +1,11 @@
 "use strict";
 
-require("core-js/modules/es.promise");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+require("core-js/modules/es.promise.js");
 
 var reasons = _interopRequireWildcard(require("../internal/reasons"));
 
@@ -39,11 +39,17 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _classPrivateFieldGet(receiver, privateMap) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to get private field on non-instance"); } if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
 
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 
-function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to set private field on non-instance"); } if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } return value; }
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
 
 var _auth = new WeakMap();
 
@@ -205,16 +211,16 @@ class HtmlChecker extends _SafeEventEmitter.default {
 
 exports.default = HtmlChecker;
 
-var _complete2 = function _complete2() {
+function _complete2() {
   const resolvePromise = _classPrivateFieldGet(this, _resolvePromise);
 
   _classPrivateMethodGet(this, _reset, _reset2).call(this);
 
   this.emit(_events.COMPLETE_EVENT);
   resolvePromise();
-};
+}
 
-var _getExcludeReason2 = function _getExcludeReason2(link) {
+function _getExcludeReason2(link) {
   const attrName = link.get(_Link.HTML_ATTR_NAME);
   const attrs = link.get(_Link.HTML_ATTRS);
   const {
@@ -265,15 +271,15 @@ var _getExcludeReason2 = function _getExcludeReason2(link) {
     } else {// Not excluded
     }
   }
-};
+}
 
-var _isExcludedAttribute2 = function _isExcludedAttribute2(attrName, tagNames) {
+function _isExcludedAttribute2(attrName, tagNames) {
   const tagGroups = _classPrivateFieldGet(this, _options).tags[_classPrivateFieldGet(this, _options).filterLevel];
 
   return tagNames.every(tagName => !(tagName in tagGroups) || !(attrName in tagGroups[tagName]));
-};
+}
 
-var _maybeEnqueueLink2 = function _maybeEnqueueLink2(link) {
+function _maybeEnqueueLink2(link) {
   if (link.get(_Link.REBASED_URL) === null) {
     link.set(_Link.HTML_OFFSET_INDEX, link.get(_Link.HTML_INDEX) - _classPrivateFieldGet(this, _excludedLinks));
     link.break("BLC_INVALID");
@@ -295,9 +301,9 @@ var _maybeEnqueueLink2 = function _maybeEnqueueLink2(link) {
       this.emit(_events.JUNK_EVENT, link);
     }
   }
-};
+}
 
-var _reset2 = function _reset2() {
+function _reset2() {
   _classPrivateFieldSet(this, _auth, null);
 
   _classPrivateFieldSet(this, _excludedLinks, 0);
@@ -307,7 +313,7 @@ var _reset2 = function _reset2() {
   _classPrivateFieldSet(this, _robots, null);
 
   _classPrivateFieldSet(this, _scanning, false);
-};
+}
 
 const isRobotAttr = (tagName, attrName) => {
   return tagName === "img" && attrName === "src" || tagName === "input" && attrName === "src" || tagName === "menuitem" && attrName === "icon" || tagName === "video" && attrName === "poster";

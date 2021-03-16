@@ -1,11 +1,11 @@
 "use strict";
 
-require("core-js/modules/es.symbol.description");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+require("core-js/modules/es.symbol.description.js");
 
 var _defaultOptions = _interopRequireDefault(require("./defaultOptions"));
 

@@ -1,11 +1,11 @@
 "use strict";
 
-require("core-js/modules/es.promise");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+require("core-js/modules/es.promise.js");
 
 var _events = require("../internal/events");
 
@@ -31,11 +31,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classPrivateFieldGet(receiver, privateMap) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to get private field on non-instance"); } if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
 
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 
-function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to set private field on non-instance"); } if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } return value; }
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
 
 // @todo BLC_ROBOTS catches rel=nofollow links but will also catch meta/header excluded links -- fine?
 const PAGE_EXCLUSIONS = ["BLC_KEYWORD", "BLC_ROBOTS", "BLC_SCHEME"];
@@ -318,21 +324,21 @@ class SiteChecker extends _SafeEventEmitter.default {
 
 exports.default = SiteChecker;
 
-var _enqueuePage2 = function _enqueuePage2(url, customData, auth) {
+function _enqueuePage2(url, customData, auth) {
   // Avoid links to self within page
   _classPrivateFieldGet(this, _sitePagesChecked).set(url, PAGE_WAS_CHECKED);
 
   _classPrivateFieldGet(this, _htmlUrlChecker).enqueue(url, customData, auth);
-};
+}
 
-var _getExcludedReason2 = function _getExcludedReason2(link) {
+function _getExcludedReason2(link) {
   if (link.get(_Link.IS_INTERNAL) && !_classPrivateMethodGet(this, _isAllowed, _isAllowed2).call(this, link)) {
     return "BLC_ROBOTS";
   } else {// Not excluded
   }
-};
+}
 
-var _isAllowed2 = function _isAllowed2(link) {
+function _isAllowed2(link) {
   if (_classPrivateFieldGet(this, _options).honorRobotExclusions) {
     var _link$get;
 
@@ -346,9 +352,9 @@ var _isAllowed2 = function _isAllowed2(link) {
   } else {
     return true;
   }
-};
+}
 
-var _maybeEnqueuePage2 = function _maybeEnqueuePage2(link, customData, auth) {
+function _maybeEnqueuePage2(link, customData, auth) {
   // Skip specific links that were excluded from checks
   if (link.get(_Link.WAS_EXCLUDED) && PAGE_EXCLUSIONS.includes(link.get(_Link.EXCLUDED_REASON))) {// do nothing
   } else {
@@ -374,9 +380,9 @@ var _maybeEnqueuePage2 = function _maybeEnqueuePage2(link, customData, auth) {
       _classPrivateMethodGet(this, _enqueuePage, _enqueuePage2).call(this, rebasedURL, customData, auth);
     }
   }
-};
+}
 
-var _overrideOptions2 = function _overrideOptions2(options) {
+function _overrideOptions2(options) {
   const {
     includeLink
   } = options;
@@ -393,9 +399,9 @@ var _overrideOptions2 = function _overrideOptions2(options) {
   };
 
   return options;
-};
+}
 
-var _reset2 = function _reset2() {
+function _reset2() {
   _classPrivateFieldSet(this, _currentAuth, null);
 
   _classPrivateFieldSet(this, _currentCustomData, null);
@@ -409,7 +415,7 @@ var _reset2 = function _reset2() {
   _classPrivateFieldSet(this, _currentSiteURL, null);
 
   _classPrivateFieldGet(this, _sitePagesChecked).clear();
-};
+}
 
 module.exports = exports.default;
 //# sourceMappingURL=SiteChecker.js.map

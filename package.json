@@ -11,7 +11,7 @@
     "broken-link-checker": "bin/blc"
   },
   "dependencies": {
-    "auto-tunnel": "github:stevenvachon/auto-tunnel",
+    "auto-tunnel": "github:stevenvachon/auto-tunnel#b8a86fad22a24b38398d1971e0dcd8907c65d7e0",
     "chalk": "^3.0.0",
     "condense-whitespace": "^2.0.0",
     "core-js": "^3.8.0",
@@ -37,13 +37,13 @@
     "parse-srcset": "^1.0.2",
     "parse5": "^5.1.1",
     "parse5-parser-stream": "^5.1.1",
-    "robot-directives": "github:stevenvachon/robot-directives",
+    "robot-directives": "github:stevenvachon/robot-directives#e4ece2ab0f43b0bb9e98b56495fe0695e25130d7",
     "robots-txt-guard": "~0.2.1",
     "robots-txt-parse": "^1.0.1",
     "strip-ansi": "^6.0.0",
     "supports-semigraphics": "^1.0.1",
-    "url-relation": "github:stevenvachon/url-relation",
-    "urlcache": "github:stevenvachon/urlcache",
+    "url-relation": "github:stevenvachon/url-relation#faac8fb1059f87a2e76dc9edf95ee89a10bce4d1",
+    "urlcache": "github:stevenvachon/urlcache#7648b54a0986ab4c603aa20ade00106bfd043bf0",
     "walk-parse5": "^2.0.0"
   },
   "devDependencies": {

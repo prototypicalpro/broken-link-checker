@@ -1,11 +1,11 @@
 "use strict";
 
-require("core-js/modules/es.object.from-entries");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.EXCLUDED_REASON = exports.BROKEN_REASON = exports.WAS_EXCLUDED = exports.IS_SAME_PAGE = exports.IS_INTERNAL = exports.IS_BROKEN = exports.HTTP_RESPONSE_WAS_CACHED = exports.HTTP_RESPONSE = exports.HTML_BASE_HREF = exports.HTML_TAG = exports.HTML_TEXT = exports.HTML_ATTRS = exports.HTML_ATTR_NAME = exports.HTML_TAG_NAME = exports.HTML_SELECTOR = exports.HTML_LOCATION = exports.HTML_OFFSET_INDEX = exports.HTML_INDEX = exports.REBASED_BASE_URL = exports.RESOLVED_BASE_URL = exports.REDIRECTED_URL = exports.REBASED_URL = exports.RESOLVED_URL = exports.ORIGINAL_URL = void 0;
+
+require("core-js/modules/es.object.from-entries.js");
 
 var reasons = _interopRequireWildcard(require("./reasons"));
 
@@ -268,7 +268,7 @@ class Link extends Map {
 
 exports.default = Link;
 
-var _relateWithBase2 = function _relateWithBase2() {
+function _relateWithBase2() {
   var _get$call;
 
   const url = (_get$call = _get(_getPrototypeOf(Link.prototype), "get", this).call(this, REDIRECTED_URL)) !== null && _get$call !== void 0 ? _get$call : _get(_getPrototypeOf(Link.prototype), "get", this).call(this, REBASED_URL); // If impossible to determine is linked to same server/etc
@@ -288,7 +288,7 @@ var _relateWithBase2 = function _relateWithBase2() {
 
     _get(_getPrototypeOf(Link.prototype), "set", this).call(this, IS_SAME_PAGE, relation.upTo(_urlRelation.default.PATH));
   }
-};
+}
 
 const keysAsValues = {
   BROKEN_REASON,

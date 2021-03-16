@@ -1,11 +1,11 @@
 "use strict";
 
-require("core-js/modules/es.promise");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+require("core-js/modules/es.promise.js");
 
 var _events = require("../internal/events");
 
@@ -29,9 +29,15 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classPrivateFieldGet(receiver, privateMap) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to get private field on non-instance"); } if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
 
-function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to set private field on non-instance"); } if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } return value; }
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
 
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 
@@ -248,25 +254,25 @@ class HtmlUrlChecker extends _SafeEventEmitter.default {
 
 exports.default = HtmlUrlChecker;
 
-var _appendRobotHeaders2 = function _appendRobotHeaders2() {
+function _appendRobotHeaders2() {
   const xRobotsTag = _classPrivateFieldGet(this, _currentResponse).headers["x-robots-tag"]; // @todo https://github.com/nodejs/node/issues/3591
 
 
   if (xRobotsTag != null) {
     _classPrivateFieldGet(this, _currentRobots).header(xRobotsTag);
   }
-};
+}
 
-var _completedPage2 = function _completedPage2(error = null) {
+function _completedPage2(error = null) {
   // @todo emit page error instead?
   // @todo include redirected url if there is one?
   this.emit(_events.PAGE_EVENT, error, _classPrivateFieldGet(this, _currentPageURL), _classPrivateFieldGet(this, _currentCustomData)); // Auto-starts next queue item, if any
   // Emits REQUEST_QUEUE_END_EVENT, if not
 
   _classPrivateFieldGet(this, _currentDone).call(this);
-};
+}
 
-var _reset2 = function _reset2() {
+function _reset2() {
   _classPrivateFieldSet(this, _currentAuth, null);
 
   _classPrivateFieldSet(this, _currentCustomData, null);
@@ -278,7 +284,7 @@ var _reset2 = function _reset2() {
   _classPrivateFieldSet(this, _currentResponse, null);
 
   _classPrivateFieldSet(this, _currentRobots, null);
-};
+}
 
 module.exports = exports.default;
 //# sourceMappingURL=HtmlUrlChecker.js.map
